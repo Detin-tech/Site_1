@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const formData = new FormData(form);
     try {
-      const response = await fetch("https://formspree.io/f/mgeqzrez", {
-        method: "POST",
+      const endpoint = form.getAttribute("action");
+      const response = await fetch(endpoint, {
+        method: form.getAttribute("method") || "POST",
         headers: {
           Accept: "application/json",
         },
