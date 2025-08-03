@@ -41,7 +41,7 @@ button {
 .scroll-top {
   width: 45px;
   height: 45px;
-  background: #2F80ED;
+  background: #6E44FF;
   display: none;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ button {
 
 .scroll-top:hover {
   color: #ffffff;
-  background: rgba(47, 128, 237, 0.8);
+  background: rgba(110, 68, 255, 0.8);
 }
 
 /* ============================= 
@@ -137,7 +137,7 @@ button {
   height: 100%;
   border-style: solid;
   /* Spinner Color */
-  border-color: #2F80ED #2F80ED #E9E9E9;
+  border-color: #6E44FF #6E44FF #E9E9E9;
   border-radius: 50%;
   border-width: 6px;
 }
@@ -308,7 +308,7 @@ p {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: #2F80ED;
+  background: #6E44FF;
   color: #ffffff;
   border: 1px solid transparent;
   position: relative;
@@ -347,12 +347,12 @@ p {
 
 .button.border-button {
   background: transparent;
-  color: #2F80ED;
-  border-color: #2F80ED;
+  color: #6E44FF;
+  border-color: #6E44FF;
 }
 
 .button.border-button::before {
-  background: rgba(47, 128, 237, 0.16);
+  background: rgba(110, 68, 255, 0.16);
 }
 
 .button-lg {
@@ -513,8 +513,8 @@ p {
 }
 
 .header.header-6 .navbar-nav .nav-item a:hover, .header.header-6 .navbar-nav .nav-item a.active {
-  color: #2F80ED;
-  border-color: #2F80ED;
+  color: #6E44FF;
+  border-color: #6E44FF;
 }
 
 .header.header-6 .navbar-nav .nav-item:hover .sub-menu {
@@ -581,7 +581,7 @@ p {
 
 .header.header-6 .navbar-nav .nav-item .sub-menu li a.active, .header.header-6 .navbar-nav .nav-item .sub-menu li a:hover {
   padding-left: 25px;
-  color: #2F80ED;
+  color: #6E44FF;
 }
 
 .header.header-6 .navbar-nav .sub-nav-toggler {
@@ -805,12 +805,12 @@ p {
 }
 
 .feature-style-5 .single-feature:hover {
-  border-color: #2F80ED;
-  box-shadow: 0px 8px 25px rgba(47, 128, 237, 0.35);
+  border-color: #6E44FF;
+  box-shadow: 0px 8px 25px rgba(110, 68, 255, 0.35);
 }
 
 .feature-style-5 .single-feature .icon {
-  color: #2F80ED;
+  color: #6E44FF;
   font-size: 45px;
   display: flex;
   justify-content: center;
@@ -883,7 +883,7 @@ p {
 }
 
 .pricing-style-4 .pricing-active-wrapper .tns-controls button:hover {
-  background: #2F80ED;
+  background: #6E44FF;
   color: #ffffff;
 }
 
@@ -947,7 +947,7 @@ p {
 
 .pricing-style-4 .pricing-active .single-pricing h3 {
   margin-bottom: 18px;
-  color: #2F80ED;
+  color: #6E44FF;
 }
 
 .pricing-style-4 .pricing-active .single-pricing ul {
@@ -1043,7 +1043,7 @@ p {
 
 .contact-style-3 .contact-form-wrapper form .single-input textarea:focus,
 .contact-style-3 .contact-form-wrapper form .single-input input:focus {
-  border-color: #2F80ED;
+  border-color: #6E44FF;
 }
 
 .contact-style-3 .contact-form-wrapper form .single-input input {
@@ -1106,7 +1106,7 @@ p {
 }
 
 .contact-style-3 .left-wrapper .single-item:hover {
-  box-shadow: 0px 5px 25px rgba(47, 128, 237, 0.3);
+  box-shadow: 0px 5px 25px rgba(110, 68, 255, 0.3);
 }
 
 .contact-style-3 .left-wrapper .single-item .icon {
@@ -1114,7 +1114,7 @@ p {
   width: 100%;
   height: 54px;
   border-radius: 50%;
-  background: #2F80ED;
+  background: #6E44FF;
   color: #ffffff;
   margin-right: 20px;
   display: flex;
@@ -1148,7 +1148,7 @@ p {
 }
 
 .footer-style-4 .widget-wrapper .footer-widget .socials li a {
-  background: rgba(47, 128, 237, 0.4);
+  background: rgba(110, 68, 255, 0.4);
   margin: 0;
   margin-right: 10px;
   width: 44px;
@@ -1157,7 +1157,7 @@ p {
 }
 
 .footer-style-4 .widget-wrapper .footer-widget .socials li a:hover {
-  background: #2F80ED;
+  background: #6E44FF;
 }
 
 .footer-style-4 .widget-wrapper .footer-widget h6 {
@@ -1174,7 +1174,7 @@ p {
 }
 
 .footer-style-4 .widget-wrapper .footer-widget .links li a:hover {
-  color: #2F80ED;
+  color: #6E44FF;
 }
 
 .footer-style-4 .widget-wrapper .footer-widget .download-app li a {
@@ -1225,7 +1225,7 @@ p {
 }
 
 .footer-style-4 .copyright-wrapper p a:hover {
-  color: #2F80ED;
+  color: #6E44FF;
 }
 
 .footer-style-4.footer-dark {
@@ -1245,7 +1245,7 @@ p {
 }
 
 .footer-style-4.footer-dark .widget-wrapper .footer-widget .socials li a:hover {
-  background: #2F80ED;
+  background: #6E44FF;
 }
 
 .footer-style-4.footer-dark .widget-wrapper .footer-widget .links li a {
@@ -1253,7 +1253,7 @@ p {
 }
 
 .footer-style-4.footer-dark .widget-wrapper .footer-widget .links li a:hover {
-  color: #2F80ED;
+  color: #6E44FF;
 }
 
 .footer-style-4.footer-dark .copyright-wrapper p {
@@ -1279,7 +1279,7 @@ p {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #2F80ED;
+  background: #6E44FF;
   color: #ffffff;
   display: flex;
   justify-content: center;
