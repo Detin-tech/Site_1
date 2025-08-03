@@ -2392,3 +2392,21 @@ input:focus, textarea:focus, button:focus {
 .pr-100 {
   padding-right: 100px;
 }
+/* ====== EQUAL HEIGHTS FOR CARDS ====== */
+.feature-style-5 .row > [class*='col'],
+.contact-style-3 .left-wrapper .row > [class*='col'],
+.pricing-style-4 .pricing-active .single-pricing-wrapper {
+  display: flex;
+}
+
+.feature-style-5 .single-feature,
+.contact-style-3 .left-wrapper .single-item,
+.pricing-style-4 .pricing-active .single-pricing {
+  flex: 1 1 auto;
+}
+
+.feature-style-5 .single-feature,
+.pricing-style-4 .pricing-active .single-pricing {
+  display: flex;
+  flex-direction: column;
+}
