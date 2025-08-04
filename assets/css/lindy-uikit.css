@@ -2425,3 +2425,13 @@ input:focus, textarea:focus, button:focus {
   display: flex;
   flex-direction: column;
 }
+
+.pricing-style-4 .single-pricing .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-style-4 .single-pricing .content .button {
+  margin-top: auto;
+}
