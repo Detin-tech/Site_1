@@ -840,7 +840,7 @@ p {
 ================================ */
 .pricing-style-4 {
   padding: 100px 0;
-  background: #F3F3F3;
+  background: #ffffff;
 }
 
 .pricing-style-4 .pricing-active-wrapper {
@@ -2395,18 +2395,18 @@ input:focus, textarea:focus, button:focus {
 /* ====== EQUAL HEIGHTS FOR CARDS ====== */
 .feature-style-5 .row > [class*='col'],
 .contact-style-3 .left-wrapper .row > [class*='col'],
-.pricing-style-4 .pricing-active .single-pricing-wrapper {
+.pricing-style-4 .row > [class*='col'] {
   display: flex;
 }
 
 .feature-style-5 .single-feature,
 .contact-style-3 .left-wrapper .single-item,
-.pricing-style-4 .pricing-active .single-pricing {
+.pricing-style-4 .single-pricing {
   flex: 1 1 auto;
 }
 
 .feature-style-5 .single-feature,
-.pricing-style-4 .pricing-active .single-pricing {
+.pricing-style-4 .single-pricing {
   display: flex;
   flex-direction: column;
 }
