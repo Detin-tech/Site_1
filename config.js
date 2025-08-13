@@ -2,9 +2,9 @@ module.exports = {
   planPrefix: 'plan:',
   planGroups: {
     // Map Lemon Squeezy variant IDs to OWUI group names
-    '12345': 'plan:basic',
-    '23456': 'plan:pro',
-    '34567': 'plan:enterprise',
+    '12345': 'plan:student',
+    '23456': 'plan:standard',
+    '34567': 'plan:pro',
   },
   grantStatuses: ['active', 'on_trial'],
   owui: {
