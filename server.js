@@ -2,6 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 const { recordEvent } = require('./db');
 const config = require('./config');
+const cookieDomain = process.env.COOKIE_DOMAIN || '.prosperspot.com';
 
 // Simple in-memory queue for provisioning jobs
 const queue = [];
@@ -9,6 +10,34 @@ const queue = [];
 const app = express();
 
 app.get('/healthz', (req, res) => res.json({ ok: true }));
+
+app.post('/session/set', express.json(), (req, res) => {
+  const accessToken = req.body?.access_token;
+  if (!accessToken) {
+    return res.status(400).json({ error: 'access_token required' });
+  }
+  res.setHeader(
+    'Set-Cookie',
+    `sb=${accessToken}; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; HttpOnly; Max-Age=3600`
+  );
+  res.json({ ok: true });
+});
+
+app.post('/session/clear', (req, res) => {
+  res.setHeader(
+    'Set-Cookie',
+    `sb=; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; Max-Age=0`
+  );
+  res.json({ ok: true });
+});
+
+app.get('/logout', (req, res) => {
+  res.setHeader(
+    'Set-Cookie',
+    `sb=; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; Max-Age=0`
+  );
+  res.redirect('/');
+});
 
 function fetchWithTimeout(url, opts = {}, timeout = 5000) {
   const controller = new AbortController();
