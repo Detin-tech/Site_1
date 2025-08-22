@@ -12,10 +12,13 @@
   <script src="assets/js/supabaseClient.js"></script>
   <script>
     (async () => {
-      try { await window.supabaseClient.auth.signOut(); } catch (e) {}
+
+      try {
+        await window.supabaseClient.auth.signOut();
+      } catch (e) {}
+
       window.location.href = '/logout';
     })();
   </script>
 </body>
 </html>
-

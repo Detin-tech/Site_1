@@ -5,7 +5,8 @@ const magicBtn = document.getElementById('magic-link');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   msgEl.textContent = '';
-  const email = document.getElementById('email').value.trim();
+
+  const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
 
   const { data, error } = await window.supabaseClient.auth.signInWithPassword({ email, password });
@@ -31,7 +32,9 @@ form.addEventListener('submit', async (e) => {
 
 magicBtn.addEventListener('click', async () => {
   msgEl.textContent = '';
-  const email = document.getElementById('email').value.trim();
+
+  const email = document.getElementById('email').value;
+
   const redirectTo = `${window.location.origin}/auth.html${window.location.search}`;
   const { error } = await window.supabaseClient.auth.signInWithOtp({
     email,
@@ -45,4 +48,3 @@ magicBtn.addEventListener('click', async () => {
     msgEl.className = 'text-success';
   }
 });
-
