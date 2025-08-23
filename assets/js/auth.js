@@ -2,6 +2,37 @@ const form = document.getElementById('login-form');
 const msgEl = document.getElementById('message');
 const magicBtn = document.getElementById('magic-link');
 
+const params = new URLSearchParams(window.location.search);
+const redirect = params.get('redirect') || 'https://dev.prosperspot.com/';
+
+async function storeSession(access_token) {
+  try {
+    await fetch('/session/set', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ access_token }),
+    });
+  } catch (err) {
+    console.error('Failed to set session', err);
+  }
+}
+
+async function handleSession(session) {
+  if (!session) return;
+  console.log('access token', session.access_token);
+  await storeSession(session.access_token);
+  window.location.href = redirect;
+}
+
+// Handle already-logged-in users or magic-link callbacks
+window.supabaseClient.auth.getSession().then(({ data }) => {
+  if (data.session) handleSession(data.session);
+});
+window.supabaseClient.auth.onAuthStateChange((_event, session) => {
+  if (session) handleSession(session);
+});
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   msgEl.textContent = '';
@@ -15,19 +46,7 @@ form.addEventListener('submit', async (e) => {
     msgEl.className = 'text-danger';
     return;
   }
-  try {
-    await fetch('/session/set', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ access_token: data.session.access_token }),
-    });
-  } catch (err) {
-    console.error('Failed to set session', err);
-  }
-  const params = new URLSearchParams(window.location.search);
-  const redirect = params.get('redirect') || 'https://dev.prosperspot.com/';
-  window.location.href = redirect;
+  await handleSession(data.session);
 });
 
 magicBtn.addEventListener('click', async () => {
