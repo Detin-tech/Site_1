@@ -17,7 +17,14 @@
         await window.supabaseClient.auth.signOut();
       } catch (e) {}
 
-      window.location.href = '/logout';
+      try {
+        await fetch('/session/clear', {
+          method: 'POST',
+          credentials: 'include',
+        });
+      } catch (e) {}
+
+      window.location.href = '/auth.html';
     })();
   </script>
 </body>
