@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 
 const PORT = process.env.PORT || 3000;
 const LEMON_SECRET = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET || '';
@@ -46,6 +47,32 @@ app.post('/webhooks/lemonsqueezy',
 
 // ---- Fallback JSON body parser (for other POSTs) ----
 app.use(express.json());
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: false,
+  auth: process.env.SMTP_USER
+    ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+    : undefined,
+});
+
+app.post('/request-invite', async (req, res) => {
+  const { email } = req.body || {};
+  if (!email) return res.status(400).json({ error: 'Email required' });
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'admin@prosperspot.com',
+      subject: 'Early Access Request',
+      text: `Please invite ${email}`,
+    });
+    res.json({ status: 'ok' });
+  } catch (err) {
+    console.error('Failed to send invite', err);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Site + auth server running on http://127.0.0.1:${PORT}`);
