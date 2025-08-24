@@ -1,9 +1,6 @@
-// Allow overriding via globals set by the hosting page. Fallback to placeholders
-// that can be replaced at deploy time or during development.
-const SUPABASE_URL =
-  window.SUPABASE_URL || 'https://your-supabase-url.supabase.co';
-const SUPABASE_ANON_KEY =
-  window.SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+// Supabase credentials are provided via globals defined before this script loads.
+const SUPABASE_URL = window.SUPABASE_URL;
+const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY;
 
 window.supabaseClient = window.supabase.createClient(
   SUPABASE_URL,

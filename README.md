@@ -14,5 +14,6 @@ An auth page powered by Supabase is available at `auth.html`. It supports
 password and magic link login. Sessions persist client-side with Supabase; on
 sign in the page redirects to the requested path. `logout.html` signs out via
 Supabase and then redirects to `auth.html`. Configure your Supabase project
-credentials by setting `SUPABASE_URL` and `SUPABASE_ANON_KEY` in `.env` or
-directly in `assets/js/supabaseClient.js`.
+credentials by editing `assets/js/supabaseEnv.js`, which sets
+`window.SUPABASE_URL` and `window.SUPABASE_ANON_KEY` before
+`assets/js/supabaseClient.js` loads.
