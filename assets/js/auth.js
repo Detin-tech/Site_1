@@ -5,6 +5,7 @@ const magicBtn = document.getElementById('magic-link');
 const params = new URLSearchParams(window.location.search);
 const redirectParam = params.get('redirect');
 const redirect = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/';
+const onAuthPage = window.location.pathname.includes('auth.html');
 
 function handleSession(session) {
   if (!session) return;
@@ -13,10 +14,12 @@ function handleSession(session) {
 
 // Handle already-logged-in users or magic-link callbacks
 window.supabaseClient.auth.getSession().then(({ data }) => {
-  if (data.session) handleSession(data.session);
+  if (data.session && onAuthPage) handleSession(data.session);
 });
-window.supabaseClient.auth.onAuthStateChange((_event, session) => {
-  if (session) handleSession(session);
+window.supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (session && (event === 'SIGNED_IN' || (event === 'INITIAL_SESSION' && onAuthPage))) {
+    handleSession(session);
+  }
 });
 
 form.addEventListener('submit', async (e) => {
