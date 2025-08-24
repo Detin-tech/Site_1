@@ -3,25 +3,11 @@ const msgEl = document.getElementById('message');
 const magicBtn = document.getElementById('magic-link');
 
 const params = new URLSearchParams(window.location.search);
-const redirect = params.get('redirect') || 'https://dev.prosperspot.com/';
+const redirectParam = params.get('redirect');
+const redirect = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/';
 
-async function storeSession(access_token) {
-  try {
-    await fetch('/session/set', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ access_token }),
-    });
-  } catch (err) {
-    console.error('Failed to set session', err);
-  }
-}
-
-async function handleSession(session) {
+function handleSession(session) {
   if (!session) return;
-  console.log('access token', session.access_token);
-  await storeSession(session.access_token);
   window.location.href = redirect;
 }
 
@@ -46,7 +32,6 @@ form.addEventListener('submit', async (e) => {
     msgEl.className = 'text-danger';
     return;
   }
-  await handleSession(data.session);
 });
 
 magicBtn.addEventListener('click', async () => {
