@@ -3,7 +3,6 @@ const express = require('express');
 const crypto = require('crypto');
 
 const PORT = process.env.PORT || 3000;
-const cookieDomain = process.env.COOKIE_DOMAIN || '.prosperspot.com';
 const LEMON_SECRET = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET || '';
 
 const app = express();
@@ -14,33 +13,6 @@ app.use(express.static(path.join(__dirname)));
 // ---- Health ----
 app.get('/healthz', (req, res) => res.json({ ok: true }));
 
-// ---- Sessions ----
-app.post('/session/set', express.json(), (req, res) => {
-  const token = req.body?.access_token;
-  if (!token) return res.status(400).json({ error: 'access_token required' });
-
-  res.setHeader(
-    'Set-Cookie',
-    `sb=${token}; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; HttpOnly; Max-Age=3600`
-  );
-  res.json({ ok: true });
-});
-
-app.post('/session/clear', (req, res) => {
-  res.setHeader(
-    'Set-Cookie',
-    `sb=; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; Max-Age=0`
-  );
-  res.json({ ok: true });
-});
-
-app.get('/logout', (req, res) => {
-  res.setHeader(
-    'Set-Cookie',
-    `sb=; Domain=${cookieDomain}; Path=/; Secure; SameSite=None; Max-Age=0`
-  );
-  res.redirect('/');
-});
 
 // ---- Lemon Squeezy webhook ----
 // IMPORTANT: raw body ONLY for this one route.
