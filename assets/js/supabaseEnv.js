@@ -1,2 +1,3 @@
+// Supabase credentials for the frontend
 window.SUPABASE_URL = 'https://oreyljqmoojibfvrwvay.supabase.co';
 window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yZXlsanFtb29qaWJmdnJ3dmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzMjU0NTIsImV4cCI6MjA2OTkwMTQ1Mn0.fG_6F_HO3n8feQoWk0A9fkwcO2vY3LaEObrF3rStTkU';
