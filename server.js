@@ -74,6 +74,25 @@ app.post('/request-invite', async (req, res) => {
   }
 });
 
+app.post('/contact', async (req, res) => {
+  const { name, email, message } = req.body || {};
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'support@prosperspot.com',
+      subject: `Support request from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    });
+    res.json({ status: 'ok' });
+  } catch (err) {
+    console.error('Failed to send contact email', err);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Site + auth server running on http://127.0.0.1:${PORT}`);
 });
