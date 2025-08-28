@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Prosper Spot</title>
+    <link rel="icon" type="image/png" href="assets/img/ps-favicon.png" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background-glow"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="32" />
+                    <span>Prosper Spot</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="auth.html" class="btn btn-secondary">Log In</a>
+                    <a href="https://prosperspot.lemonsqueezy.com/checkout/buy/606477" class="btn btn-primary">Upgrade</a>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                    <i data-feather="menu"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Contact Support</h1>
+                </div>
+                <form id="contact-form" action="/contact" method="POST">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                    <div id="form-message" class="d-none"></div>
+                </form>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="animate-on-scroll">❓ FAQ</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question"><span>Can I switch plans later?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
+                        <div class="faq-answer"><p>Yes — upgrade, downgrade, or cancel anytime.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question"><span>How is Prosper Spot different from ChatGPT?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
+                        <div class="faq-answer"><p>We’re focused on real-world tools, not just chat. Plus, we’re cheaper, faster, and more customizable.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question"><span>Do I need to install anything?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
+                        <div class="faq-answer"><p>Nope. Use it in your browser — or self-host if you prefer.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question"><span>How does the 14-day trial work?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
+                        <div class="faq-answer"><p>Enjoy full access for 14 days — no credit card required.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question"><span>Can I self-host Prosper Spot?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
+                        <div class="faq-answer"><p>Yes! We support open models and private deployments.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><a href="#" class="logo"><img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="24" /><span>Prosper Spot</span></a><p>Smarter AI. Built for Real Work.</p></div>
+                <div class="footer-col">
+                    <h4>Product</h4><ul><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/docs">Documentation</a></li>
+                        <li><a href="/api">API Reference</a></li>
+                        <li><a href="/security">Security</a></li>
+                        <li><a href="https://status.prosperspot.com">System Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Prosper Spot. All rights reserved.</p>
+                <div class="social-links"><a href="#" aria-label="Twitter"><i data-feather="twitter"></i></a><a href="#" aria-label="LinkedIn"><i data-feather="linkedin"></i></a><a href="#" aria-label="GitHub"><i data-feather="github"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
+
