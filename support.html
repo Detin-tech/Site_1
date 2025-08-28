@@ -36,49 +36,60 @@
         </div>
     </header>
     <main>
-        <section class="contact">
+        <section class="support">
             <div class="container">
-                <div class="section-header">
-                    <h1>Contact Support</h1>
-                </div>
-                <form id="contact-form" action="/contact" method="POST">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                    <div id="form-message" class="d-none"></div>
-                </form>
-            </div>
-        </section>
-
-        <section class="faq">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="animate-on-scroll">❓ FAQ</h2>
-                </div>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question"><span>Can I switch plans later?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
-                        <div class="faq-answer"><p>Yes — upgrade, downgrade, or cancel anytime.</p></div>
+                <div class="support-grid">
+                    <div class="support-card">
+                        <h2>Contact Support</h2>
+                        <p class="support-subtitle">We usually reply within a business day.</p>
+                        <form id="support-form" action="/contact" method="POST" novalidate>
+                            <div class="field">
+                                <label for="support-name">Name</label>
+                                <input type="text" id="support-name" name="name" required>
+                                <div class="error">Name is required.</div>
+                            </div>
+                            <div class="field">
+                                <label for="support-email">Email</label>
+                                <input type="email" id="support-email" name="email" required>
+                                <div class="error">Valid email required.</div>
+                            </div>
+                            <div class="field">
+                                <label for="support-message">Message</label>
+                                <textarea id="support-message" name="message" required></textarea>
+                                <div class="error">Message is required.</div>
+                            </div>
+                            <div class="field hp-field">
+                                <label for="support-company">Company</label>
+                                <input type="text" id="support-company" name="company" tabindex="-1" autocomplete="off">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="support-submit" disabled>Send</button>
+                            <div id="support-response" class="form-response" aria-live="polite"></div>
+                        </form>
                     </div>
-                    <div class="faq-item">
-                        <button class="faq-question"><span>How is Prosper Spot different from ChatGPT?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
-                        <div class="faq-answer"><p>We’re focused on real-world tools, not just chat. Plus, we’re cheaper, faster, and more customizable.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question"><span>Do I need to install anything?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
-                        <div class="faq-answer"><p>Nope. Use it in your browser — or self-host if you prefer.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question"><span>How does the 14-day trial work?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
-                        <div class="faq-answer"><p>Enjoy full access for 14 days. Cancel anytime before your trial ends.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question"><span>Can I self-host Prosper Spot?</span><i data-feather="chevron-down" class="faq-icon"></i></button>
-                        <div class="faq-answer"><p>Yes! We support open models and private deployments.</p></div>
+                    <div class="faq-col">
+                        <h2 class="faq-heading">FAQ</h2>
+                        <div class="faq-container">
+                            <div class="faq-item">
+                                <button class="faq-question" aria-expanded="false" aria-controls="faq1" data-key="switch_plans"><span>Can I switch plans later?</span><i data-feather="chevron-right" class="faq-icon"></i></button>
+                                <div class="faq-answer" id="faq1" role="region"><p>Yes — upgrade, downgrade, or cancel anytime.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" aria-expanded="false" aria-controls="faq2" data-key="difference"><span>How is Prosper Spot different from ChatGPT?</span><i data-feather="chevron-right" class="faq-icon"></i></button>
+                                <div class="faq-answer" id="faq2" role="region"><p>We’re focused on real-world tools, not just chat. Plus, we’re cheaper, faster, and more customizable.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" aria-expanded="false" aria-controls="faq3" data-key="install"><span>Do I need to install anything?</span><i data-feather="chevron-right" class="faq-icon"></i></button>
+                                <div class="faq-answer" id="faq3" role="region"><p>Nope. Use it in your browser — or self-host if you prefer.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" aria-expanded="false" aria-controls="faq4" data-key="trial"><span>How does the 14-day trial work?</span><i data-feather="chevron-right" class="faq-icon"></i></button>
+                                <div class="faq-answer" id="faq4" role="region"><p>Enjoy full access for 14 days. Cancel anytime before your trial ends.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" aria-expanded="false" aria-controls="faq5" data-key="self_host"><span>Can I self-host Prosper Spot?</span><i data-feather="chevron-right" class="faq-icon"></i></button>
+                                <div class="faq-answer" id="faq5" role="region"><p>Yes! We support open models and private deployments.</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,7 +111,6 @@
         </div>
     </footer>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/contact.js"></script>
     <script>
         feather.replace();
     </script>
