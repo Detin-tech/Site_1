@@ -20,9 +20,9 @@
                     <img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="32" />
                     <span>Prosper Spot</span>
                 </a>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
-                    <li class="nav-account d-none"><a href="account.html">Account</a></li>
+                    <li class="nav-account d-none"><a href="account.html" aria-current="page">Account</a></li>
                     <li><a href="support.html">Support</a></li>
                     <li class="nav-open-app d-none"><a href="https://app.prosperspot.com">Open App</a></li>
                 </ul>
@@ -31,7 +31,7 @@
                     <a href="pricing.html" class="btn btn-primary nav-upgrade">Upgrade</a>
                     <a href="logout.html" class="btn btn-secondary nav-logout d-none">Logout</a>
                 </div>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
                     <i data-feather="menu"></i>
                 </button>
             </nav>
@@ -44,17 +44,35 @@
                     <h1>Your Account</h1>
                 </div>
                 <div class="account-info">
-                    <p><strong>Plan:</strong> Standard</p>
-                    <p><strong>Trial ends:</strong> October 1, 2024</p>
-                    <p><a href="#" class="btn btn-secondary">Manage billing</a></p>
+                    <p><strong>Plan:</strong> <span id="account-plan">–</span></p>
+                    <p><strong>Status:</strong> <span id="account-status">–</span></p>
+                    <p id="account-date"></p>
+                    <p><a href="#" class="btn btn-secondary" id="manage-billing">Manage billing</a></p>
+                    <p class="version">Build: <span id="build-version"></span></p>
                 </div>
             </div>
         </section>
     </main>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><a href="#" class="logo"><img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="24" /><span>Prosper Spot</span></a><p>Smarter AI. Built for Real Work.</p></div>
+                <div class="footer-col">
+                    <h4>Product</h4><ul><li><a href="index.html#features">Features</a></li><li><a href="index.html#pricing">Pricing</a></li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prosper Spot. All rights reserved.</p>
+                <div class="social-links"><a href="#" aria-label="Twitter"><i data-feather="twitter"></i></a><a href="#" aria-label="LinkedIn"><i data-feather="linkedin"></i></a><a href="#" aria-label="GitHub"><i data-feather="github"></i></a></div>
+            </div>
+        </div>
+    </footer>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="assets/js/supabaseEnv.js"></script>
     <script src="assets/js/supabaseClient.js"></script>
+    <script src="assets/js/version.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/account.js"></script>
     <script>feather.replace();</script>
 </body>
 </html>
