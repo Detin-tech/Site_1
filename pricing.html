@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Prosper Spot</title>
+    <link rel="icon" type="image/png" href="assets/img/ps-favicon.png" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background-glow"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="32" />
+                    <span>Prosper Spot</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Study</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="auth.html" class="btn btn-secondary">Log In</a>
+                    <a href="pricing.html" class="btn btn-primary">Upgrade</a>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                    <i data-feather="menu"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Choose Your Plan</h1>
+                    <p>No model names, just benefits.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <p class="price-desc">Start experimenting</p>
+                        <div class="price"><sup>$</sup>0<span>/mo</span></div>
+                        <ul>
+                            <li><i data-feather="check-circle"></i> Basic answers</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free →</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Student</h3>
+                        <p class="price-desc">For learners and classrooms</p>
+                        <div class="price"><sup>$</sup>5<span>/mo</span></div>
+                        <ul>
+                            <li><i data-feather="check-circle"></i> Faster answers</li>
+                            <li><i data-feather="check-circle"></i> Larger context</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Student →</a>
+                    </div>
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Standard</h3>
+                        <p class="price-desc">For reliable everyday AI</p>
+                        <div class="price"><sup>$</sup>10<span>/mo</span></div>
+                        <ul>
+                            <li><i data-feather="check-circle"></i> Faster answers</li>
+                            <li><i data-feather="check-circle"></i> Larger context</li>
+                            <li><i data-feather="check-circle"></i> Priority queue</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Standard →</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pro</h3>
+                        <p class="price-desc">For builders and power users</p>
+                        <div class="price"><sup>$</sup>20<span>/mo</span></div>
+                        <ul>
+                            <li><i data-feather="check-circle"></i> Faster answers</li>
+                            <li><i data-feather="check-circle"></i> Larger context</li>
+                            <li><i data-feather="check-circle"></i> Priority queue</li>
+                            <li><i data-feather="check-circle"></i> Advanced tools</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Choose Pro →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="assets/js/script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
