@@ -16,15 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
-    const formData = new FormData(form);
+    const formData = Object.fromEntries(new FormData(form).entries());
     try {
       const endpoint = form.getAttribute("action");
       const response = await fetch(endpoint, {
         method: form.getAttribute("method") || "POST",
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: formData,
+        body: JSON.stringify(formData),
       });
       if (response.ok) {
         showMessage("Thanks for contacting us!", "success");

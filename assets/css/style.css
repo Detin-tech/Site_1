@@ -18,6 +18,8 @@ html { scroll-behavior: smooth; }
 section { padding: 100px 0; }
 img { max-width: 100%; display: block; }
 a { color: var(--text-color); text-decoration: none; }
+.d-none { display: none !important; }
+.mt-3 { margin-top: 1rem; }
 
 /* --- Background Glow Effect --- */
 .background-glow { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, var(--glow-color) 0%, rgba(13, 12, 34, 0) 60%); animation: rotateGlow 20s linear infinite; z-index: -1; }
@@ -145,6 +147,10 @@ td i[data-feather="x-circle"] { color: var(--secondary-color); }
     display: flex;
     flex-direction: column;
     gap: 15px;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .contact label {
@@ -153,11 +159,12 @@ td i[data-feather="x-circle"] { color: var(--secondary-color); }
 
 .contact input,
 .contact textarea {
-    background-color: var(--card-bg);
+    background-color: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 12px 15px;
     color: var(--text-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .contact input:focus,
@@ -165,6 +172,21 @@ td i[data-feather="x-circle"] { color: var(--secondary-color); }
     outline: none;
     border-color: var(--secondary-color);
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.contact .alert {
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.contact .alert-success {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.contact .alert-danger {
+    background: #f8d7da;
+    color: #842029;
 }
 
 /* --- FAQ Section --- */
