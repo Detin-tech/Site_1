@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account - Prosper Spot</title>
+    <link rel="icon" type="image/png" href="assets/img/ps-favicon.png" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background-glow"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="32" />
+                    <span>Prosper Spot</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Study</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="auth.html" class="btn btn-secondary">Log In</a>
+                    <a href="pricing.html" class="btn btn-primary">Upgrade</a>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                    <i data-feather="menu"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Your Account</h1>
+                </div>
+                <div class="account-info">
+                    <p><strong>Plan:</strong> Standard</p>
+                    <p><strong>Renews:</strong> October 1, 2024</p>
+                    <div class="usage">
+                        <label>Messages used today</label>
+                        <progress value="0" max="100"></progress>
+                        <span>0 / 100</span>
+                    </div>
+                    <p><a href="#" class="btn btn-secondary">Manage billing</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="assets/js/script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
