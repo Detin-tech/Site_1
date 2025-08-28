@@ -20,10 +20,10 @@
                     <img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="32" />
                     <span>Prosper Spot</span>
                 </a>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="nav-account d-none"><a href="account.html">Account</a></li>
-                    <li><a href="support.html">Support</a></li>
+                    <li><a href="support.html" aria-current="page">Support</a></li>
                     <li class="nav-open-app d-none"><a href="https://app.prosperspot.com">Open App</a></li>
                 </ul>
                 <div class="nav-buttons">
@@ -31,7 +31,7 @@
                     <a href="pricing.html" class="btn btn-primary nav-upgrade">Upgrade</a>
                     <a href="logout.html" class="btn btn-secondary nav-logout d-none">Logout</a>
                 </div>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Open Menu">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
                     <i data-feather="menu"></i>
                 </button>
             </nav>
@@ -102,7 +102,7 @@
             <div class="footer-grid">
                 <div class="footer-col"><a href="#" class="logo"><img src="/assets/img/logo/logo5r.png" alt="Prosper Spot logo" height="24" /><span>Prosper Spot</span></a><p>Smarter AI. Built for Real Work.</p></div>
                 <div class="footer-col">
-                    <h4>Product</h4><ul><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li></ul>
+                    <h4>Product</h4><ul><li><a href="index.html#features">Features</a></li><li><a href="index.html#pricing">Pricing</a></li></ul>
                 </div>
                 <!-- Removed placeholder Company and Resources links -->
             </div>
@@ -115,6 +115,7 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="assets/js/supabaseEnv.js"></script>
     <script src="assets/js/supabaseClient.js"></script>
+    <script src="assets/js/checkout.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         feather.replace();

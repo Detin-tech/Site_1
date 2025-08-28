@@ -4,7 +4,15 @@ const magicBtn = document.getElementById('magic-link');
 
 const params = new URLSearchParams(window.location.search);
 const redirectParam = params.get('redirect');
-const redirect = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/';
+let redirect = '/pricing.html';
+if (redirectParam) {
+  try {
+    const url = new URL(redirectParam, window.location.origin);
+    if (url.origin === window.location.origin && url.pathname.startsWith('/')) {
+      redirect = url.pathname + url.search;
+    }
+  } catch {}
+}
 const onAuthPage = window.location.pathname.includes('auth.html');
 
 function handleSession(session) {
