@@ -14,6 +14,9 @@ app.use(express.static(path.join(__dirname)));
 // ---- Health ----
 app.get('/healthz', (req, res) => res.json({ ok: true }));
 
+// Legacy status page
+app.get('/status', (req, res) => res.redirect(301, '/'));
+
 
 // ---- Lemon Squeezy webhook ----
 // IMPORTANT: raw body ONLY for this one route.
