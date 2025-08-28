@@ -10,6 +10,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Auth-aware Navigation
+    const loginLink = document.querySelector('.nav-login');
+    const logoutLink = document.querySelector('.nav-logout');
+    const accountLink = document.querySelector('.nav-account');
+    const openAppLink = document.querySelector('.nav-open-app');
+    const upgradeLinks = document.querySelectorAll('.nav-upgrade');
+    let currentSession = null;
+
+    const setRedirect = () => {
+        if (loginLink) {
+            const current = window.location.pathname + window.location.search;
+            loginLink.href = `auth.html?redirect=${encodeURIComponent(current)}`;
+        }
+    };
+
+    setRedirect();
+
+    function updateNav(session) {
+        currentSession = session;
+        if (session) {
+            loginLink?.classList.add('d-none');
+            accountLink?.classList.remove('d-none');
+            logoutLink?.classList.remove('d-none');
+            openAppLink?.classList.remove('d-none');
+        } else {
+            loginLink?.classList.remove('d-none');
+            accountLink?.classList.add('d-none');
+            logoutLink?.classList.add('d-none');
+            openAppLink?.classList.add('d-none');
+        }
+    }
+
+    if (window.supabaseClient) {
+        window.supabaseClient.auth.getSession().then(({ data }) => {
+            updateNav(data.session);
+        });
+        window.supabaseClient.auth.onAuthStateChange((_event, session) => {
+            updateNav(session);
+        });
+    }
+
+    upgradeLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (!currentSession) {
+                e.preventDefault();
+                const dest = link.getAttribute('href') || '/pricing.html';
+                window.location.href = `auth.html?redirect=${encodeURIComponent(dest)}`;
+            }
+        });
+    });
+
     // On-Scroll Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
