@@ -20,6 +20,7 @@ img { max-width: 100%; display: block; }
 a { color: var(--text-color); text-decoration: none; }
 .d-none { display: none !important; }
 .mt-3 { margin-top: 1rem; }
+.invert-text { filter: invert(1); }
 
 /* --- Background Glow Effect --- */
 .background-glow { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, var(--glow-color) 0%, rgba(13, 12, 34, 0) 60%); animation: rotateGlow 20s linear infinite; z-index: -1; }
