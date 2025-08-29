@@ -1,3 +1,60 @@
+const loginLink = document.querySelector('.nav-login');
+const logoutLink = document.querySelector('.nav-logout');
+const accountLink = document.querySelector('.nav-account');
+const openAppLink = document.querySelector('.nav-open-app');
+const upgradeLinks = document.querySelectorAll('.nav-upgrade');
+let currentSession = null;
+let wasLoggedIn = false;
+
+if (localStorage.getItem('ps_logged_in') === 'true') {
+    loginLink?.classList.add('d-none');
+    accountLink?.classList.remove('d-none');
+    logoutLink?.classList.remove('d-none');
+    openAppLink?.classList.remove('d-none');
+    wasLoggedIn = true;
+}
+
+const setRedirect = () => {
+    if (loginLink) {
+        const current = window.location.pathname + window.location.search;
+        loginLink.href = `auth.html?redirect=${encodeURIComponent(current)}`;
+    }
+};
+
+setRedirect();
+
+function showLogoutBanner() {
+    if (document.getElementById('session-expired')) return;
+    const banner = document.createElement('div');
+    banner.id = 'session-expired';
+    banner.className = 'session-expired';
+    const redirect = window.location.pathname + window.location.search;
+    banner.innerHTML = `Logged out due to inactivity — <a href="auth.html?redirect=${encodeURIComponent(redirect)}">Log in again</a>`;
+    document.body.prepend(banner);
+}
+
+function updateNav(session) {
+    currentSession = session;
+    if (session) {
+        loginLink?.classList.add('d-none');
+        accountLink?.classList.remove('d-none');
+        logoutLink?.classList.remove('d-none');
+        openAppLink?.classList.remove('d-none');
+        localStorage.setItem('ps_logged_in', 'true');
+        document.getElementById('session-expired')?.remove();
+        wasLoggedIn = true;
+    } else {
+        loginLink?.classList.remove('d-none');
+        accountLink?.classList.add('d-none');
+        logoutLink?.classList.add('d-none');
+        openAppLink?.classList.add('d-none');
+        localStorage.setItem('ps_logged_in', 'false');
+        if (wasLoggedIn) showLogoutBanner();
+        wasLoggedIn = false;
+        setRedirect();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Mobile Navigation Toggle with accessibility
@@ -39,54 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.focus();
             }
         });
-    }
-
-    // Auth-aware Navigation
-    const loginLink = document.querySelector('.nav-login');
-    const logoutLink = document.querySelector('.nav-logout');
-    const accountLink = document.querySelector('.nav-account');
-    const openAppLink = document.querySelector('.nav-open-app');
-    const upgradeLinks = document.querySelectorAll('.nav-upgrade');
-    let currentSession = null;
-    let wasLoggedIn = false;
-
-    const setRedirect = () => {
-        if (loginLink) {
-            const current = window.location.pathname + window.location.search;
-            loginLink.href = `auth.html?redirect=${encodeURIComponent(current)}`;
-        }
-    };
-
-    setRedirect();
-
-    function showLogoutBanner() {
-        if (document.getElementById('session-expired')) return;
-        const banner = document.createElement('div');
-        banner.id = 'session-expired';
-        banner.className = 'session-expired';
-        const redirect = window.location.pathname + window.location.search;
-        banner.innerHTML = `Logged out due to inactivity — <a href="auth.html?redirect=${encodeURIComponent(redirect)}">Log in again</a>`;
-        document.body.prepend(banner);
-    }
-
-    function updateNav(session) {
-        currentSession = session;
-        if (session) {
-            loginLink?.classList.add('d-none');
-            accountLink?.classList.remove('d-none');
-            logoutLink?.classList.remove('d-none');
-            openAppLink?.classList.remove('d-none');
-            document.getElementById('session-expired')?.remove();
-            wasLoggedIn = true;
-        } else {
-            loginLink?.classList.remove('d-none');
-            accountLink?.classList.add('d-none');
-            logoutLink?.classList.add('d-none');
-            openAppLink?.classList.add('d-none');
-            if (wasLoggedIn) showLogoutBanner();
-            wasLoggedIn = false;
-            setRedirect();
-        }
     }
 
     if (window.supabaseClient) {
