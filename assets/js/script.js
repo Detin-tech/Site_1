@@ -55,6 +55,92 @@ function updateNav(session) {
     }
 }
 
+let waitlistModal;
+
+function createWaitlistModal() {
+    waitlistModal = document.createElement('div');
+    waitlistModal.id = 'waitlist-modal';
+    waitlistModal.className = 'waitlist-modal';
+    waitlistModal.innerHTML = `
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Close">&times;</button>
+            <h2>Join the waitlist</h2>
+            <form id="waitlist-form" action="/waitlist" method="POST" novalidate>
+                <div class="field">
+                    <label for="wl-name">Name</label>
+                    <input type="text" id="wl-name" name="name" required>
+                    <div class="error">Name is required.</div>
+                </div>
+                <div class="field">
+                    <label for="wl-email">Email</label>
+                    <input type="email" id="wl-email" name="email" required>
+                    <div class="error">Valid email required.</div>
+                </div>
+                <div class="field">
+                    <label for="wl-message">Message</label>
+                    <textarea id="wl-message" name="message" required></textarea>
+                    <div class="error">Message is required.</div>
+                </div>
+                <input type="hidden" id="wl-plan" name="plan">
+                <button type="submit" class="btn btn-primary" id="wl-submit" disabled>Send</button>
+                <div id="wl-response" class="form-response" aria-live="polite"></div>
+            </form>
+        </div>`;
+    document.body.appendChild(waitlistModal);
+
+    const closeBtn = waitlistModal.querySelector('.modal-close');
+    closeBtn.addEventListener('click', () => waitlistModal.classList.remove('active'));
+    waitlistModal.addEventListener('click', (e) => {
+        if (e.target === waitlistModal) waitlistModal.classList.remove('active');
+    });
+
+    const form = waitlistModal.querySelector('#waitlist-form');
+    const submitBtn = waitlistModal.querySelector('#wl-submit');
+    const response = waitlistModal.querySelector('#wl-response');
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            submitBtn.disabled = !Array.from(inputs).every(i => i.value.trim());
+        });
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+            const resp = await fetch(form.getAttribute('action'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if (resp.ok) {
+                response.textContent = 'Thanks for joining!';
+                response.className = 'form-response success';
+                form.reset();
+                submitBtn.disabled = true;
+            } else {
+                throw new Error('Request failed');
+            }
+        } catch {
+            response.textContent = 'Oops! There was a problem submitting your form.';
+            response.className = 'form-response error';
+        }
+    });
+}
+
+function openWaitlistModal(plan) {
+    if (!waitlistModal) createWaitlistModal();
+    const planInput = waitlistModal.querySelector('#wl-plan');
+    if (planInput) planInput.value = plan || '';
+    waitlistModal.classList.add('active');
+    const first = waitlistModal.querySelector('#wl-name');
+    first?.focus();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Mobile Navigation Toggle with accessibility
@@ -185,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     location_path: window.location.pathname,
                     ref: document.referrer || ''
                 });
-                window.location.href = '/waitlist';
+                openWaitlistModal(plan);
             });
             cta.appendChild(btn);
 
