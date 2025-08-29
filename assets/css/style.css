@@ -198,8 +198,6 @@ footer { padding: 80px 0 30px; border-top: 1px solid var(--border-color); }
 .footer-col li { margin-bottom: 10px; }
 .footer-col a:hover { color: var(--heading-color); }
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; border-top: 1px solid var(--border-color); color: var(--secondary-color); font-size: 0.9rem; }
-.social-links { display: flex; gap: 15px; }
-.social-links a:hover { color: var(--heading-color); }
 
 /* --- Animations --- */
 .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
