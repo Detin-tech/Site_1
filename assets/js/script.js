@@ -137,6 +137,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Product gating overlay
+    function initProductGates() {
+        if (!document.body.classList.contains('gated')) return;
+        const cards = document.querySelectorAll('[data-gated]');
+        cards.forEach(card => {
+            if (card.dataset.gateInit === 'true') return;
+            card.dataset.gateInit = 'true';
+            card.classList.add('gate-active');
+            if (getComputedStyle(card).position === 'static') {
+                card.style.position = 'relative';
+            }
+            // remove focus from underlying interactive elements
+            card.querySelectorAll('a, button, input, textarea, select').forEach(el => {
+                if (!el.closest('.gate-overlay')) {
+                    el.setAttribute('tabindex', '-1');
+                }
+            });
+            const overlay = document.createElement('div');
+            overlay.className = 'gate-overlay';
+            overlay.setAttribute('role', 'region');
+            overlay.setAttribute('aria-label', 'Invite-only gate');
+
+            const banner = document.createElement('div');
+            banner.className = 'gate-banner';
+            banner.textContent = 'Coming soon — invite only';
+            overlay.appendChild(banner);
+
+            const cta = document.createElement('div');
+            cta.className = 'gate-cta';
+
+            const headline = document.createElement('p');
+            headline.className = 'gate-headline';
+            headline.textContent = 'Access by invitation.';
+            cta.appendChild(headline);
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn btn-primary gate-btn';
+            const plan = card.dataset.plan || '';
+            if (plan) btn.dataset.plan = plan;
+            btn.textContent = 'Join the waitlist';
+            btn.addEventListener('click', () => {
+                window.dataLayer?.push({
+                    event: 'waitlist_click',
+                    plan,
+                    location_path: window.location.pathname,
+                    ref: document.referrer || ''
+                });
+                window.location.href = '/waitlist';
+            });
+            cta.appendChild(btn);
+
+            overlay.appendChild(cta);
+            card.appendChild(overlay);
+        });
+    }
+
+    initProductGates();
+
     // On-Scroll Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
