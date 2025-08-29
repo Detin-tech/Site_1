@@ -45,12 +45,13 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 
 /* --- Hero Section --- */
 .hero { text-align: center; padding: 140px 0; min-height: 80vh; display: flex; align-items: center; justify-content: center; }
-.hero-content { max-width: 800px; margin: 0 auto; }
-.hero-text-box {
-    background: rgba(19, 18, 44, 0.8);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; color: var(--heading-color); background: linear-gradient(90deg, #ffffff, #dcdce6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-tagline { font-size: 1.5rem; color: var(--heading-color); margin-bottom: 30px; }
