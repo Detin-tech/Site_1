@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const slug = link.getAttribute('data-plan');
         if (window.checkoutLinks?.[slug]) {
             link.href = window.checkoutLinks[slug];
+            link.classList.add('lemonsqueezy-button');
         }
     });
 
