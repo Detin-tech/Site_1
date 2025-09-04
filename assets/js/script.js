@@ -14,22 +14,12 @@ if (localStorage.getItem('ps_logged_in') === 'true') {
     wasLoggedIn = true;
 }
 
-const setRedirect = () => {
-    if (loginLink) {
-        const current = window.location.pathname + window.location.search;
-        loginLink.href = `auth.html?redirect=${encodeURIComponent(current)}`;
-    }
-};
-
-setRedirect();
-
 function showLogoutBanner() {
     if (document.getElementById('session-expired')) return;
     const banner = document.createElement('div');
     banner.id = 'session-expired';
     banner.className = 'session-expired';
-    const redirect = window.location.pathname + window.location.search;
-    banner.innerHTML = `Logged out due to inactivity — <a href="auth.html?redirect=${encodeURIComponent(redirect)}">Log in again</a>`;
+    banner.innerHTML = `Logged out due to inactivity — <a href="index.html#login">Log in again</a>`;
     document.body.prepend(banner);
 }
 
@@ -51,12 +41,54 @@ function updateNav(session) {
         localStorage.setItem('ps_logged_in', 'false');
         if (wasLoggedIn) showLogoutBanner();
         wasLoggedIn = false;
-        setRedirect();
     }
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Auth modal handling
+    const loginModal = document.getElementById('login-modal');
+    const signupModal = document.getElementById('signup-modal');
+    const openLoginBtn = document.getElementById('open-login');
+    const openSignupBtn = document.getElementById('open-signup');
+    const showSignupLink = document.getElementById('show-signup');
+    const showLoginLink = document.getElementById('show-login');
+    const modalCloseButtons = document.querySelectorAll('[data-close]');
+
+    const openModal = (modal) => {
+        modal?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = (modal) => {
+        modal?.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    openLoginBtn?.addEventListener('click', () => openModal(loginModal));
+    openSignupBtn?.addEventListener('click', () => openModal(signupModal));
+    showSignupLink?.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal(loginModal);
+        openModal(signupModal);
+    });
+    showLoginLink?.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal(signupModal);
+        openModal(loginModal);
+    });
+    modalCloseButtons.forEach(btn => btn.addEventListener('click', () => {
+        closeModal(loginModal);
+        closeModal(signupModal);
+    }));
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) closeModal(loginModal);
+        if (e.target === signupModal) closeModal(signupModal);
+    });
+
+    if (window.location.hash === '#login') openModal(loginModal);
+    if (window.location.hash === '#signup') openModal(signupModal);
 
     // Mobile Navigation Toggle with accessibility
     const menuToggle = document.getElementById('menu-toggle');
@@ -118,23 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const sanitizeRedirect = (url) => {
-        try {
-            const u = new URL(url, window.location.origin);
-            if (u.origin !== window.location.origin) return '/pricing.html';
-            if (!u.pathname.startsWith('/')) return '/pricing.html';
-            return u.pathname + u.search + u.hash;
-        } catch {
-            return '/pricing.html';
-        }
-    };
-
     upgradeLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             if (!currentSession) {
                 e.preventDefault();
-                const dest = sanitizeRedirect(link.getAttribute('href') || '/pricing.html');
-                window.location.href = `auth.html?redirect=${encodeURIComponent(dest)}`;
+                openModal(loginModal);
             }
         });
     });
