@@ -3,6 +3,7 @@ const msgEl = document.getElementById('message');
 const magicBtn = document.getElementById('magic-link');
 const signupForm = document.getElementById('signup-form');
 const signupMsg = document.getElementById('signup-message');
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,}$/;
 
 const params = new URLSearchParams(window.location.search);
 const redirectParam = params.get('redirect');
@@ -74,6 +75,19 @@ signupForm?.addEventListener('submit', async (e) => {
 
   const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-password').value;
+  const terms = document.getElementById('signup-terms').checked;
+
+  if (!passwordRegex.test(password)) {
+    signupMsg.textContent = 'Password must be at least 12 characters and include uppercase, lowercase, number, and special character.';
+    signupMsg.className = 'text-danger';
+    return;
+  }
+
+  if (!terms) {
+    signupMsg.textContent = 'You must agree to the Terms of Service and Privacy Policy.';
+    signupMsg.className = 'text-danger';
+    return;
+  }
 
   const { error } = await window.supabaseClient.auth.signUp({ email, password });
   if (error) {
